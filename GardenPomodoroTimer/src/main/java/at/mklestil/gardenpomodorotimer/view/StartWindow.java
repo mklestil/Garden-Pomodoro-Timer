@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 public class StartWindow {
     private BorderPane root;
     private Label status;
+    private Label selectedTagLabel;
+    private Label settingsTagLabel;
     private Button plus = new Button("+");
     private Button minus = new Button("-");
     private ProgressBar progress;
@@ -59,10 +61,16 @@ public class StartWindow {
         //Tags
         //Todo: Style for HBox
         HBox tagsBox = new HBox(5);
-        tagsBox.getChildren().add(addTagsButton);
-        tagsBox.getChildren().add(selectTagButton);
+        selectedTagLabel = new Label(LanguageManager.getInstance().getBundle().getString("selectedTag"));
+        settingsTagLabel = new Label(LanguageManager.getInstance().getBundle().getString("settingsTag"));
 
-        vBox.getChildren().addAll(plantImageView, new Label("Tags:"), tagsBox, hbox, buttonBox);
+        tagsBox.getChildren().add(selectedTagLabel);
+        tagsBox.getChildren().add(selectTagButton);
+        HBox tagsBoxChange = new HBox(5);
+        tagsBoxChange.getChildren().add(settingsTagLabel);
+        tagsBoxChange.getChildren().add(addTagsButton);
+
+        vBox.getChildren().addAll(plantImageView, tagsBox, tagsBoxChange, hbox, buttonBox);
 
         //Status and Time
         BorderPane topPane = new BorderPane();
@@ -85,6 +93,7 @@ public class StartWindow {
         buttonBox.setStyle("-fx-alignment: center;");
         vBox.setStyle("-fx-alignment: center;");
         tagsBox.setStyle("-fx-alignment: center;");
+        tagsBoxChange.setStyle("-fx-alignment: center;");
         BorderPane.setAlignment(status, Pos.CENTER);
         BorderPane.setAlignment(timeLabel, Pos.CENTER);
 
@@ -116,6 +125,9 @@ public class StartWindow {
         startButton.setText(bundle.getString("startButton"));
         breakButton.setText(bundle.getString("breakButton"));
         resetButton.setText(bundle.getString("resetButton"));
+        selectedTagLabel.setText(bundle.getString("selectedTag"));
+        settingsTagLabel.setText(bundle.getString("settingsTag"));
+
     }
 
     public void updateColor(){

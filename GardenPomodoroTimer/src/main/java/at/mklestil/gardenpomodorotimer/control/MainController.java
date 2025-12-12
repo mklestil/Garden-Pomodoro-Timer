@@ -128,6 +128,8 @@ public class MainController {
         //TODO
         model.setTag(tag);
         tagDAO.insert(model);
+        System.out.println("Tag saved: " + tag);
+        // initializeScenes(); // reload UI Elements
     }
 
     public void changeLanugage() {
