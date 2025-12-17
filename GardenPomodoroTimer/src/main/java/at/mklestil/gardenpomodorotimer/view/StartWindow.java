@@ -19,7 +19,7 @@ public class StartWindow {
     private BorderPane root;
     private Label status;
     private Label selectedTagLabel;
-    private Label settingsTagLabel;
+    private Button settingsTagBtn;
     private Button plus = new Button("+");
     private Button minus = new Button("-");
     private ProgressBar progress;
@@ -62,13 +62,12 @@ public class StartWindow {
         //Todo: Style for HBox
         HBox tagsBox = new HBox(5);
         selectedTagLabel = new Label(LanguageManager.getInstance().getBundle().getString("selectedTag"));
-        settingsTagLabel = new Label(LanguageManager.getInstance().getBundle().getString("settingsTag"));
 
         tagsBox.getChildren().add(selectedTagLabel);
         tagsBox.getChildren().add(selectTagButton);
         HBox tagsBoxChange = new HBox(5);
-        tagsBoxChange.getChildren().add(settingsTagLabel);
         tagsBoxChange.getChildren().add(addTagsButton);
+        tagsBoxChange.getChildren().add(loadTagEditBtn());
 
         vBox.getChildren().addAll(plantImageView, tagsBox, tagsBoxChange, hbox, buttonBox);
 
@@ -126,7 +125,7 @@ public class StartWindow {
         breakButton.setText(bundle.getString("breakButton"));
         resetButton.setText(bundle.getString("resetButton"));
         selectedTagLabel.setText(bundle.getString("selectedTag"));
-        settingsTagLabel.setText(bundle.getString("settingsTag"));
+
 
     }
 
@@ -210,6 +209,27 @@ public class StartWindow {
             System.out.println("Image file not found.");
         }
         return btnChart;
+    }
+
+    public Button loadTagEditBtn(){
+        settingsTagBtn = new Button("");
+        InputStream inputStream = getClass().getResourceAsStream("/images/start/pen.png");
+        if(inputStream != null){
+            //Check Image is correct
+            Image image = new Image(inputStream);
+            if(!image.isError()){
+                ImageView imageView = new ImageView(image);
+                imageView.setFitHeight(24);
+                imageView.setFitWidth(24);
+                settingsTagBtn.setGraphic(imageView);
+                settingsTagBtn.setStyle("-fx-background-color: white;");
+            }else {
+                System.out.println("Error loading image: " + "/images/start/pen.png");
+            }
+        }else{
+            System.out.println("Image file not found.");
+        }
+        return settingsTagBtn;
     }
 
     public void initialTrees(ArrayList<String> listImagePath){
