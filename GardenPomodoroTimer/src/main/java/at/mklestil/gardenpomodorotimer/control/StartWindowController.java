@@ -8,6 +8,7 @@ import at.mklestil.gardenpomodorotimer.view.TagSelectionDialog;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextInputDialog;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class StartWindowController {
         view.getResetButton().setOnAction(e -> resetTimer());
         view.getSelectTagButton().setOnMouseClicked(event -> showTagSelectionDialog());
         view.getAddTagsButton().setOnAction(event -> addTagDialog());
+        view.getSettingsTagBtn().setOnAction(event -> editTags());
 
         view.getPlus().setOnAction(e -> plusTime());
         view.getMinus().setOnAction(e -> minusTime());
@@ -188,6 +190,14 @@ public class StartWindowController {
 
     private void editTags(){
         // Todo: Edit Tags ...
+        System.out.println("Edit Tags ...");
+        TextInputDialog dialog = new TextInputDialog(model.getTag());
+        dialog.show();
+        System.out.println(model.getTag());
+        // Todo: implement edit tag functionality
+
+
+
 
     }
 
