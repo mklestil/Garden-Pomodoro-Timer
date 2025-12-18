@@ -159,14 +159,21 @@ public class StartWindowController {
         resetButtonsToStart();
     }
 
+    // Tags
 
-    // Todo: Edit Tags ...
+    /** Method to show dialog to add new tag
+     *
+     */
     private void addTagDialog(){
         TagAddDialog addTagDialog = new TagAddDialog();
         Optional<String> result = addTagDialog.showAndWait();
         result.ifPresent(value -> mainController.saveTag(value));
 
     }
+
+    /** Method to show dialog to select tag
+     *
+     */
     private void showTagSelectionDialog() {
         TagSelectionService tagService = new TagSelectionService(mainController, model);
         List<String> tags = tagService.getAvailableTags();
@@ -177,6 +184,11 @@ public class StartWindowController {
             model.setTag(selectedTag);
             view.getSelectTagButton().setText(selectedTag);
         });
+    }
+
+    private void editTags(){
+        // Todo: Edit Tags ...
+
     }
 
     public void plusTime() {

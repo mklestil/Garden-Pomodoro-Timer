@@ -34,10 +34,17 @@ public class StartWindow {
     private Button btnChart;
     private Button addTagsButton = new Button("+");
 
+
+    /** * Constructor for StartWindow.
+     * Initializes the UI components and layout.
+     */
+
     public StartWindow() {
         root = new BorderPane();
         initialize();
     }
+
+    /** Initializes the UI components and layout of the StartWindow. */
 
     private void initialize() {
         //Text
@@ -59,7 +66,6 @@ public class StartWindow {
         buttonBox.getChildren().addAll(startButton, breakButton, resetButton);
 
         //Tags
-        //Todo: Style for HBox
         HBox tagsBox = new HBox(5);
         selectedTagLabel = new Label(LanguageManager.getInstance().getBundle().getString("selectedTag"));
 
@@ -67,7 +73,7 @@ public class StartWindow {
         tagsBox.getChildren().add(selectTagButton);
         HBox tagsBoxChange = new HBox(5);
         tagsBoxChange.getChildren().add(addTagsButton);
-        tagsBoxChange.getChildren().add(loadTagEditBtn());
+        tagsBoxChange.getChildren().add(loadTagEditBtn()); //load edit tags btn and add to hbox
 
         vBox.getChildren().addAll(plantImageView, tagsBox, tagsBoxChange, hbox, buttonBox);
 
@@ -181,6 +187,7 @@ public class StartWindow {
                 imageView.setFitWidth(24);
                 btnSettings.setGraphic(imageView);
                 btnSettings.setStyle("-fx-background-color: transparent;");
+               //Todo: Hover effect
             }else {
                 System.out.println("Error loading image: " + "/images/start/settings.png");
             }
@@ -190,6 +197,7 @@ public class StartWindow {
         return btnSettings;
     }
 
+    // Todo: load Btns into a separate class
     public Button loadChartBtn(){
         btnChart = new Button("");
         InputStream inputStream = getClass().getResourceAsStream("/images/start/chart.png");
@@ -223,6 +231,7 @@ public class StartWindow {
                 imageView.setFitWidth(24);
                 settingsTagBtn.setGraphic(imageView);
                 settingsTagBtn.setStyle("-fx-background-color: white;");
+                settingsTagBtn.setStyle("-fx-hover-background-color: #e0e0e0");
             }else {
                 System.out.println("Error loading image: " + "/images/start/pen.png");
             }
@@ -300,6 +309,9 @@ public class StartWindow {
 
     public ImageView getPlantImageView() {
         return plantImageView;
+    }
+    public Button getSettingsTagBtn() {
+        return settingsTagBtn;
     }
 
     public Label getTimeLabel() {

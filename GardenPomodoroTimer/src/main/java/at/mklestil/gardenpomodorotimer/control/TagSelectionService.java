@@ -9,6 +9,13 @@ public class TagSelectionService {
     private final MainController mainController;
     private final AppModel model;
 
+    /**
+     * Constructor for TagSelectionService.
+     *
+     * @param mainController The main controller to interact with.
+     * @param model          The application model containing the current state.
+     */
+
     public TagSelectionService(MainController mainController, AppModel model) {
         this.mainController = mainController;
         this.model = model;
