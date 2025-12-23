@@ -124,19 +124,28 @@ public class MainController {
         return tagDAO.findAll();
     }
 
+    public void changeLanugage() {
+        LanguageManager.getInstance().addLanguageChangeListener(() -> {
+            System.out.println("Language has been changed! UI needs to be updated now.");
+            initializeScenes(); // reload UI Elements
+        });
+    }
+
     public void saveTag(String tag) {
-        //TODO
         model.setTag(tag);
         tagDAO.insert(model);
         System.out.println("Tag saved: " + tag);
         // initializeScenes(); // reload UI Elements
     }
 
-    public void changeLanugage() {
-        LanguageManager.getInstance().addLanguageChangeListener(() -> {
-            System.out.println("Language has been changed! UI needs to be updated now.");
-            initializeScenes(); // reload UI Elements
-        });
+    public void saveEditTag(String tag, String newTag) {
+        // Update Tags in db
+        tagDAO.update(tag, newTag);
+        model.setTag(newTag);
+    }
+
+    public void loadAllTags(){
+        model.setTagsList(tagDAO.findAll());
     }
 }
 

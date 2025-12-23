@@ -2,6 +2,8 @@ package at.mklestil.gardenpomodorotimer.view;
 
 import at.mklestil.gardenpomodorotimer.model.AppModel;
 import at.mklestil.gardenpomodorotimer.model.ImageViewWithPath;
+import at.mklestil.gardenpomodorotimer.model.TagDAO;
+import at.mklestil.gardenpomodorotimer.model.Tags;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
@@ -26,6 +28,7 @@ public class ChosePlant {
     private String chose = "/images/start/start.png";
     private int timeChose = 25;
     private String tagChose = "learn";
+    private ArrayList<String> tagsList = new ArrayList<>();
     private ArrayList<String> plantList;
     private Image plantImage;
     private ImageView choseImageView;
@@ -33,6 +36,7 @@ public class ChosePlant {
     private ArrayList<TimesButton> times;
     private Slider timeSlider =  new Slider(1.0, 120.0, timeChose);
     private StringProperty chosenStringProperty = new SimpleStringProperty("" + timeChose);
+    private HBox tagsContainer = new HBox(5);
 
     private Button startBtn;
 
@@ -40,7 +44,7 @@ public class ChosePlant {
         root = new VBox();
         FlowPane plantContainer = getPlantContainer();
         VBox fokusTimeContainer = getFocusTimeContainer();
-        HBox tagsContainer = getTagsContainer(new ArrayList<String>());
+        tagsContainer = getTagsContainer(tagsList);
         FlowPane choseContainer = getChoseContainer();
 
         root.getChildren().add(plantContainer);
@@ -133,12 +137,13 @@ public class ChosePlant {
     }
 
     private HBox getTagsContainer(ArrayList<String> tagsList){
-        HBox tagsContainer = new HBox();
+        tagsContainer.getChildren().clear();
+        System.out.println("Tags List Size: " + tagsList.size());
         if(tagsList.size() == 0 || tagsList == null){
-            tagsContainer.getChildren().add(new Label("no tag"));
+            tagsContainer.getChildren().add(new TagsLabel("no tag"));
         }else{
             for(String tags : tagsList){
-                Label temp = new Label(tags);
+                TagsLabel temp = new TagsLabel(tags);
                 tagsContainer.getChildren().add(temp);
             }
         }
@@ -146,8 +151,9 @@ public class ChosePlant {
         return tagsContainer;
     }
 
-    private void showListOfTags(){
-        //Todo:: tags lod
+    public void updateTagList(ArrayList<String> tagsList){
+        //Update List
+        getTagsContainer(tagsList);
     }
 
     public VBox getRoot() {

@@ -60,6 +60,30 @@ public class TagDAO implements DAO<AppModel>{
 
     }
 
+    public void update(String tag, String newTag) {
+        if (connection == null) {
+            System.out.println("Error: No valid database connection!");
+            return;
+        }
+
+        String sql = "UPDATE tags SET name = ? WHERE name = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, newTag);
+            pstmt.setString(2, tag);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Tag updated from " + tag + " to " + newTag);
+            } else {
+                System.out.println("No tag found with the name: " + tag);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error updating the tag: " + e.getMessage());
+        }
+
+
+    }
+
     @Override
     public void delete(AppModel object) {
 

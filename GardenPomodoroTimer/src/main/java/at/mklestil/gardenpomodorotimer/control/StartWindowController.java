@@ -189,12 +189,14 @@ public class StartWindowController {
     }
 
     private void editTags(){
-        // Todo: Edit Tags ...
         System.out.println("Edit Tags ...");
         TextInputDialog dialog = new TextInputDialog(model.getTag());
-        dialog.show();
-        System.out.println(model.getTag());
-        // Todo: implement edit tag functionality
+        dialog.showAndWait();
+        String tempTag = dialog.getResult();
+        if (tempTag != null && !tempTag.trim().isEmpty()) {
+            mainController.saveEditTag(model.getTag(), tempTag);
+            view.getSelectTagButton().setText(model.getTag());
+        }
 
 
 

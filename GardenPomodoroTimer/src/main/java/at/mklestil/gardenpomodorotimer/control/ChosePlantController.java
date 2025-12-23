@@ -24,6 +24,7 @@ public class ChosePlantController {
         mainController = scene;
         model = mainController.getModel();
         chosenPlant = model.getSelectedPlant();
+        loadTags();
         registerEventHandler();
     }
 
@@ -74,6 +75,11 @@ public class ChosePlantController {
             System.out.println("chosen values: " + view.getChose() + " " +  view.getTagChose()+ " " + view.getTimeChose());
             mainController.switchTo("start");
         });
+    }
+
+    private void loadTags(){
+        mainController.loadAllTags();
+        view.updateTagList(model.getTagsList());
     }
 
 

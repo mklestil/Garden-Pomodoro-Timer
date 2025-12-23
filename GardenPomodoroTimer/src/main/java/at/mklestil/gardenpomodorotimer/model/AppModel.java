@@ -1,5 +1,7 @@
 package at.mklestil.gardenpomodorotimer.model;
 
+import java.util.ArrayList;
+
 /**
  * AppModel local data
  */
@@ -10,6 +12,7 @@ public class AppModel {
     private String currentLanguage = "de";
     private static AppModel instance;
     private String backgroundColor = "#55C57A";
+    private ArrayList<String> tagsList = new ArrayList<>();
 
     private AppModel() {
 
@@ -59,5 +62,13 @@ public class AppModel {
 
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
+    }
+
+    public ArrayList<String> getTagsList() {
+        return tagsList;
+    }
+
+    public void setTagsList(ArrayList<String> tagsList) {
+        this.tagsList = tagsList;
     }
 }
