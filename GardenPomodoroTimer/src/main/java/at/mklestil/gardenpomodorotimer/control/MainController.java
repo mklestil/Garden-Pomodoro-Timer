@@ -54,6 +54,7 @@ public class MainController {
         //ChosePlant
         ChosePlant chosePlantView = new ChosePlant();
         chosePlantController = new ChosePlantController(chosePlantView, this);
+        chosePlantView.getRoot().setMaxSize(appWidth, appHeight);
         choseScene = new Scene(chosePlantView.getRoot(), appWidth, appHeight);
         choseScene.getStylesheets().add(getClass().getResource("/styles/chosePlant.css").toExternalForm());
 

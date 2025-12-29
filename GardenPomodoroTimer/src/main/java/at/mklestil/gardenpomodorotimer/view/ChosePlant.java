@@ -2,14 +2,9 @@ package at.mklestil.gardenpomodorotimer.view;
 
 import at.mklestil.gardenpomodorotimer.model.AppModel;
 import at.mklestil.gardenpomodorotimer.model.ImageViewWithPath;
-import at.mklestil.gardenpomodorotimer.model.TagDAO;
-import at.mklestil.gardenpomodorotimer.model.Tags;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -18,16 +13,18 @@ import javafx.scene.layout.VBox;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.concurrent.Flow;
 
 /**
  * ChosePlant View, a view to chose a plant.
  */
 
 public class ChosePlant {
-    private VBox root;
+    private FlowPane root;
     private String chose = "/images/start/start.png";
     private int timeChose = 25;
     private String tagChose = "learn";
+    private StringProperty chosenTagProperty = new SimpleStringProperty("" + tagChose);
     private ArrayList<String> tagsList = new ArrayList<>();
     private ArrayList<String> plantList;
     private Image plantImage;
@@ -36,12 +33,13 @@ public class ChosePlant {
     private ArrayList<TimesButton> times;
     private Slider timeSlider =  new Slider(1.0, 120.0, timeChose);
     private StringProperty chosenStringProperty = new SimpleStringProperty("" + timeChose);
-    private HBox tagsContainer = new HBox(5);
+    private FlowPane tagsContainer = new FlowPane();
+    private ArrayList<TagsBtn> tagsButtons = new ArrayList<>();
 
     private Button startBtn;
 
     public ChosePlant(){
-        root = new VBox();
+        root = new FlowPane();
         FlowPane plantContainer = getPlantContainer();
         VBox fokusTimeContainer = getFocusTimeContainer();
         tagsContainer = getTagsContainer(tagsList);
@@ -56,6 +54,7 @@ public class ChosePlant {
 
     private FlowPane getPlantContainer(){
         FlowPane plantContainer = new FlowPane();
+        plantContainer.setPadding(new javafx.geometry.Insets(10,10,10,10));
         plantList = new ArrayList<>();
         //Todo:: dynamic plants form db
         plantList.add("/images/tree/6_tree.png");
@@ -83,6 +82,7 @@ public class ChosePlant {
         Label timeLabel = new Label("Test");
         timeLabel.textProperty().bind(chosenStringProperty);
         Label tagLabel = new Label(tagChose);
+        tagLabel.textProperty().bind(chosenTagProperty);
         timeLabel.getStyleClass().add("label");
         tagLabel.getStyleClass().add("label");
         InputStream inputStream = getClass().getResourceAsStream(AppModel.getInstance().getSelectedPlant());
@@ -136,19 +136,25 @@ public class ChosePlant {
         return timesContainer;
     }
 
-    private HBox getTagsContainer(ArrayList<String> tagsList){
+    private FlowPane getTagsContainer(ArrayList<String> tagsList){
         tagsContainer.getChildren().clear();
+        tagsContainer.setPadding(new javafx.geometry.Insets(10,10,10,10));
         System.out.println("Tags List Size: " + tagsList.size());
         if(tagsList.size() == 0 || tagsList == null){
-            tagsContainer.getChildren().add(new TagsLabel("no tag"));
+            tagsContainer.getChildren().add(new TagsBtn("no tag"));
         }else{
             for(String tags : tagsList){
-                TagsLabel temp = new TagsLabel(tags);
-                tagsContainer.getChildren().add(temp);
+                TagsBtn tagsBtn = new TagsBtn(tags);
+                tagsButtons.add(tagsBtn);
+                tagsContainer.getChildren().add(tagsBtn);
             }
         }
         tagsContainer.getStyleClass().add("container");
         return tagsContainer;
+    }
+
+    public ArrayList<TagsBtn> getTagsButtons() {
+        return tagsButtons;
     }
 
     public void updateTagList(ArrayList<String> tagsList){
@@ -156,7 +162,7 @@ public class ChosePlant {
         getTagsContainer(tagsList);
     }
 
-    public VBox getRoot() {
+    public FlowPane getRoot() {
         return root;
     }
 
@@ -195,6 +201,7 @@ public class ChosePlant {
 
     public void setTagChose(String tagChose) {
         this.tagChose = tagChose;
+        chosenTagProperty.set("" + this.tagChose);
     }
 
     public ArrayList<ImageViewWithPath> getListOfImageViews() {

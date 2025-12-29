@@ -33,6 +33,19 @@ public class ChosePlantController {
         startButtonHandler();
         timeBtnHandler();
         timeSliderHandler();
+        tagsBtnHandler();
+    }
+
+    private void tagsBtnHandler() {
+        view.getTagsButtons().forEach(btn -> {
+            btn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    System.out.println("Tag button clicked: " + btn.getTagName());
+                    view.setTagChose(btn.getTagName());
+                }
+            });
+        });
     }
 
     private void timeBtnHandler() {
