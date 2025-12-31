@@ -10,6 +10,7 @@ public class TagAddDialog extends TextInputDialog {
 
     public TagAddDialog(){
         this.setTitle(LanguageManager.getInstance().getBundle().getString("addTagTitle"));
+        this.setContentText(LanguageManager.getInstance().getBundle().getString("placeHolderTag"));
         this.setHeaderText(LanguageManager.getInstance().getBundle().getString("addTagHeader"));
     }
 
