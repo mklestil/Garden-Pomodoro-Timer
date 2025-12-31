@@ -23,6 +23,8 @@ public class ChosePlantController {
         view = viewChosePlant;
         mainController = scene;
         model = mainController.getModel();
+        view.setAppHight(model.getAppHight());
+        view.setAppWidth(model.getAppWidth());
         chosenPlant = model.getSelectedPlant();
         loadTags();
         registerEventHandler();

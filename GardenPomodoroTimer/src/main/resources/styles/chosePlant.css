@@ -1,4 +1,4 @@
-/* --- Allgemeine Stile --- */
+/* --- General style --- */
 .root {
     -fx-background-color: #f4f4f4;
     -fx-padding: 20px;
@@ -12,7 +12,7 @@
     -fx-padding: 10px;
 }
 
-/* --- Pflanzenbild --- */
+/* --- Plant img --- */
 .image-view {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 2, 2);
     -fx-border-radius: 10px;

@@ -33,6 +33,8 @@ public class MainController {
     public MainController(Stage stage, AppModel model) {
         this.model = model;
         this.stage = stage;
+        appWidth = model.getAppWidth();
+        appHeight = model.getAppHight();
 
         // Set language before views are loaded
         LanguageManager.getInstance();
@@ -48,6 +50,7 @@ public class MainController {
         //Start View
         StartWindow view = new StartWindow();
         startController = new StartWindowController(view, this);
+        startController.initialize();
         startScene = new Scene(view.getRoot(), appWidth, appHeight);
         startScene.getStylesheets().add(getClass().getResource("/styles/startWindowStyle.css").toExternalForm());
 
@@ -67,7 +70,6 @@ public class MainController {
         ChartView chartView = new ChartView();
         chartController = new ChartController(this, chartView);
         chartScene = new Scene(chartView.getRoot(), appWidth, appHeight);
-
     }
 
     public void startApp() {

@@ -14,6 +14,9 @@ public class AppModel {
     private String backgroundColor = "#55C57A";
     private ArrayList<String> tagsList = new ArrayList<>();
 
+    private int appWidth = 280;
+    private int appHight = 420;
+
     private AppModel() {
 
     }
@@ -62,6 +65,22 @@ public class AppModel {
 
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
+    }
+
+    public int getAppWidth() {
+        return appWidth;
+    }
+
+    public void setAppWidth(int appWidth) {
+        this.appWidth = appWidth;
+    }
+
+    public int getAppHight() {
+        return appHight;
+    }
+
+    public void setAppHight(int appHight) {
+        this.appHight = appHight;
     }
 
     public ArrayList<String> getTagsList() {

@@ -27,7 +27,7 @@ public class StartWindow {
     private Button startButton;
     private Button breakButton;
     private Button resetButton;
-    private Label timeLabel;
+    private Label timeLabel = new Label("25:00");
     private final Image[] plantStages = new Image[5];
     private ImageView plantImageView;
     private Button btnSettings;
@@ -82,7 +82,6 @@ public class StartWindow {
         topPane.setLeft(loadChartBtn());
         topPane.setCenter(status);
         topPane.setRight(loadSettingsBtn());
-        timeLabel = new Label("25:00");
 
         //updateTexts
         updateTexts();
@@ -316,6 +315,9 @@ public class StartWindow {
 
     public Label getTimeLabel() {
         return timeLabel;
+    }
+    public void setTimeLabel(Label timeLabel) {
+        this.timeLabel = timeLabel;
     }
 
     public void setPlantImageView(ImageView plantImageView) {

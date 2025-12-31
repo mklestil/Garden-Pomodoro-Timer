@@ -33,8 +33,6 @@ public class StartWindowController {
         this.view = view;
         mainController = sManger;
         model = mainController.getModel();
-        initialize();
-        addData();
     }
 
     private void addData() {
@@ -57,6 +55,11 @@ public class StartWindowController {
         view.getSelectTagButton().setText(model.getTag());
         //Todo:: InitialTrees with Data from DB, dynamic growth state
         view.initialTrees(new ArrayList<String>());
+
+        //Add Data
+        addData();
+
+        //Switch Scene Event Management
         switchScene();
     }
 
@@ -166,7 +169,7 @@ public class StartWindowController {
     /** Method to show dialog to add new tag
      *
      */
-    private void addTagDialog(){
+    public void addTagDialog(){
         TagAddDialog addTagDialog = new TagAddDialog();
         Optional<String> result = addTagDialog.showAndWait();
         result.ifPresent(value -> mainController.saveTag(value));

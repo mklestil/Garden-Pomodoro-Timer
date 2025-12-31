@@ -20,7 +20,7 @@ import java.util.concurrent.Flow;
  */
 
 public class ChosePlant {
-    private FlowPane root;
+    private ScrollPane root;
     private String chose = "/images/start/start.png";
     private int timeChose = 25;
     private String tagChose = "learn";
@@ -35,25 +35,44 @@ public class ChosePlant {
     private StringProperty chosenStringProperty = new SimpleStringProperty("" + timeChose);
     private FlowPane tagsContainer = new FlowPane();
     private ArrayList<TagsBtn> tagsButtons = new ArrayList<>();
+    private int appWidth = 280;
+    private int appHight = 420;
 
     private Button startBtn;
 
     public ChosePlant(){
-        root = new FlowPane();
+        initialize();
+    }
+
+    /** * Initialize the view
+     */
+    public void initialize() {
+        // Todo: Scroll Plane einbauen , flow pane zu scroll
+        root = new ScrollPane();
+        FlowPane container = new FlowPane();
+
         FlowPane plantContainer = getPlantContainer();
-        VBox fokusTimeContainer = getFocusTimeContainer();
+        FlowPane fokusTimeContainer = getFocusTimeContainer();
         tagsContainer = getTagsContainer(tagsList);
         FlowPane choseContainer = getChoseContainer();
 
-        root.getChildren().add(plantContainer);
-        root.getChildren().add(fokusTimeContainer);
-        root.getChildren().add(tagsContainer);
-        root.getChildren().add(choseContainer);
+        container.getChildren().add(plantContainer);
+        container.getChildren().add(fokusTimeContainer);
+        container.getChildren().add(tagsContainer);
+        container.getChildren().add(choseContainer);
+        container.setPrefWrapLength(appWidth - 20); // Sets the preferred break length of the FlowPane
+        container.setMaxWidth(appWidth - 20);
+
+        root.setContent(container);
+        root.setFitToWidth(true); // Adjusts the width of the ScrollPane to match that of the FlowPane.
+        root.setFitToHeight(true); // Adjusts the height of the ScrollPane to match that of the FlowPane.
+        root.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Disables the horizontal scrollbar
 
     }
 
     private FlowPane getPlantContainer(){
         FlowPane plantContainer = new FlowPane();
+        plantContainer.setMaxWidth(appWidth - 20);
         plantContainer.setPadding(new javafx.geometry.Insets(10,10,10,10));
         plantList = new ArrayList<>();
         //Todo:: dynamic plants form db
@@ -79,6 +98,7 @@ public class ChosePlant {
 
     private FlowPane getChoseContainer (){
         FlowPane choseContainer = new FlowPane();
+        choseContainer.setMaxWidth(appWidth - 20);
         Label timeLabel = new Label("Test");
         timeLabel.textProperty().bind(chosenStringProperty);
         Label tagLabel = new Label(tagChose);
@@ -109,9 +129,11 @@ public class ChosePlant {
      * Methode give me buttons with time to chose
      * @return
      */
-    private VBox getFocusTimeContainer (){
-        VBox timesContainer = new VBox();
+    private FlowPane getFocusTimeContainer (){
+        FlowPane timesContainer = new FlowPane();
+        timesContainer.setMaxWidth(appWidth - 20);
         FlowPane buttonsContainer = new FlowPane();
+        buttonsContainer.setMaxWidth(appWidth - 20);
 
         times = new ArrayList<TimesButton>();
         times.add(new TimesButton("10", 10));
@@ -138,6 +160,7 @@ public class ChosePlant {
 
     private FlowPane getTagsContainer(ArrayList<String> tagsList){
         tagsContainer.getChildren().clear();
+        tagsContainer.setMaxWidth(appWidth - 20);
         tagsContainer.setPadding(new javafx.geometry.Insets(10,10,10,10));
         System.out.println("Tags List Size: " + tagsList.size());
         if(tagsList.size() == 0 || tagsList == null){
@@ -162,7 +185,7 @@ public class ChosePlant {
         getTagsContainer(tagsList);
     }
 
-    public FlowPane getRoot() {
+    public ScrollPane getRoot() {
         return root;
     }
 
@@ -214,6 +237,14 @@ public class ChosePlant {
 
     public Slider getTimeSlider() {
         return timeSlider;
+    }
+
+    public void setAppWidth(int appWidth) {
+        this.appWidth = appWidth;
+    }
+
+    public void setAppHight(int appHight) {
+        this.appHight = appHight;
     }
 }
 
