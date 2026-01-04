@@ -10,7 +10,11 @@ module at.mklestil.pomodorotimer {
     requires javafx.fxml;
     requires java.sql;
 
-    opens at.mklestil.gardenpomodorotimer.model to javafx.base;
-    opens at.mklestil.gardenpomodorotimer to javafx.fxml;
-    exports at.mklestil.gardenpomodorotimer;
+    opens at.tintildev.gardenpomodorotimer.repository to javafx.base;
+    opens at.tintildev.gardenpomodorotimer to javafx.fxml;
+    exports at.tintildev.gardenpomodorotimer;
+    opens at.tintildev.gardenpomodorotimer.tags to javafx.base;
+    opens at.tintildev.gardenpomodorotimer.domain to javafx.base;
+    opens at.tintildev.gardenpomodorotimer.repository.sqlite to javafx.base;
+    opens at.tintildev.gardenpomodorotimer.state to javafx.base;
 }

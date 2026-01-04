@@ -105,7 +105,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>at.mklestil.pomodorotimer/at.mklestil.gardenpomodorotimer.App</mainClass>
+              <mainClass>at.mklestil.pomodorotimer/at.tintildev.gardenpomodorotimer.App</mainClass>
               <launcher>app</launcher>
               <modulePath>
                 <!-- Automatische Module -->
