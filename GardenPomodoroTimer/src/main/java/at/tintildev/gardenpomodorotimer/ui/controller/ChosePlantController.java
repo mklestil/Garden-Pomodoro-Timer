@@ -1,7 +1,7 @@
 package at.tintildev.gardenpomodorotimer.ui.controller;
 
 import at.tintildev.gardenpomodorotimer.state.ApplicationState;
-import at.tintildev.gardenpomodorotimer.repository.ImageViewWithPath;
+import at.tintildev.gardenpomodorotimer.ui.view.ImageViewWithPath;
 import at.tintildev.gardenpomodorotimer.ui.view.ChosePlant;
 import at.tintildev.gardenpomodorotimer.ui.view.TimesButton;
 import javafx.beans.value.ChangeListener;

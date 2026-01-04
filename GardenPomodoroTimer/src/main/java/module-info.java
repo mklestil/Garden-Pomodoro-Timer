@@ -13,8 +13,9 @@ module at.mklestil.pomodorotimer {
     opens at.tintildev.gardenpomodorotimer.repository to javafx.base;
     opens at.tintildev.gardenpomodorotimer to javafx.fxml;
     exports at.tintildev.gardenpomodorotimer;
-    opens at.tintildev.gardenpomodorotimer.tags to javafx.base;
     opens at.tintildev.gardenpomodorotimer.domain to javafx.base;
     opens at.tintildev.gardenpomodorotimer.repository.sqlite to javafx.base;
     opens at.tintildev.gardenpomodorotimer.state to javafx.base;
+    opens at.tintildev.gardenpomodorotimer.service to javafx.base;
+    opens at.tintildev.gardenpomodorotimer.ui.view to javafx.base;
 }

@@ -1,7 +1,7 @@
 package at.tintildev.gardenpomodorotimer.ui.controller;
 
 import at.tintildev.gardenpomodorotimer.state.ApplicationState;
-import at.tintildev.gardenpomodorotimer.tags.TagSelectionService;
+import at.tintildev.gardenpomodorotimer.service.TagSelectionService;
 import at.tintildev.gardenpomodorotimer.ui.view.StartWindow;
 import at.tintildev.gardenpomodorotimer.ui.view.TagAddDialog;
 import at.tintildev.gardenpomodorotimer.ui.view.TagSelectionDialog;

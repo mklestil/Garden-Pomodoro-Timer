@@ -1,7 +1,6 @@
 package at.tintildev.gardenpomodorotimer.ui.view;
 
 import at.tintildev.gardenpomodorotimer.state.ApplicationState;
-import at.tintildev.gardenpomodorotimer.repository.ImageViewWithPath;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.*;

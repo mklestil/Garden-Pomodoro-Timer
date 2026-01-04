@@ -2,9 +2,12 @@ package at.tintildev.gardenpomodorotimer.ui.controller;
 
 import at.tintildev.gardenpomodorotimer.domain.PomodoroSession;
 import at.tintildev.gardenpomodorotimer.repository.*;
+import at.tintildev.gardenpomodorotimer.repository.sqlite.ImageSQLiteRepository;
+import at.tintildev.gardenpomodorotimer.repository.sqlite.SessionSQLiteRepository;
+import at.tintildev.gardenpomodorotimer.repository.sqlite.TagSQLiteRepository;
 import at.tintildev.gardenpomodorotimer.service.LanguageManager;
 import at.tintildev.gardenpomodorotimer.state.ApplicationState;
-import at.tintildev.gardenpomodorotimer.tags.TagRepository;
+import at.tintildev.gardenpomodorotimer.repository.TagRepository;
 import at.tintildev.gardenpomodorotimer.ui.view.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -103,14 +106,9 @@ public class MainController {
     }
 
     private void startDBs() {
-        imageRepository = new ImageRepository();
-        sessionRepository = new SessionRepository();
-        tagDAO = new TagRepository();
-
-        // Create tables if not exists
-        imageRepository.createTable();
-        sessionRepository.createTable();
-        tagDAO.createTable();
+        imageRepository = new ImageSQLiteRepository();
+        sessionRepository = new SessionSQLiteRepository();
+        tagDAO = new TagSQLiteRepository();
 
     }
 

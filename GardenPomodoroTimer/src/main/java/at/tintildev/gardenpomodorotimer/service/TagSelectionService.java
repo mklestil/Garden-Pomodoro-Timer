@@ -1,4 +1,4 @@
-package at.tintildev.gardenpomodorotimer.tags;
+package at.tintildev.gardenpomodorotimer.service;
 
 import at.tintildev.gardenpomodorotimer.ui.controller.MainController;
 import at.tintildev.gardenpomodorotimer.state.ApplicationState;

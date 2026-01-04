@@ -1,4 +1,4 @@
-package at.tintildev.gardenpomodorotimer.tags;
+package at.tintildev.gardenpomodorotimer.domain;
 
 import java.util.ArrayList;
 

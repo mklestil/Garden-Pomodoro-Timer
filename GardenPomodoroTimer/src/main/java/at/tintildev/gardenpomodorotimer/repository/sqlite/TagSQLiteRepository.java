@@ -1,30 +1,31 @@
-package at.tintildev.gardenpomodorotimer.tags;
+package at.tintildev.gardenpomodorotimer.repository.sqlite;
 
+import at.tintildev.gardenpomodorotimer.domain.Tags;
+import at.tintildev.gardenpomodorotimer.repository.TagRepository;
 import at.tintildev.gardenpomodorotimer.state.ApplicationState;
-import at.tintildev.gardenpomodorotimer.repository.Repository;
-import at.tintildev.gardenpomodorotimer.repository.sqlite.SQLiteConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class TagRepository implements Repository<ApplicationState> {
+public class TagSQLiteRepository implements TagRepository {
     private Connection connection;
 
-    public TagRepository()  {
+    public TagSQLiteRepository()  {
         try {
             connection = implementationConnection();
+            createTable();
         } catch (SQLException e) {
-            throw new RuntimeException("Error initializing ImagesDAO: " + e.getMessage(), e);
+            throw new RuntimeException("Error initializing: " + e.getMessage(), e);
         }
     }
 
-    @Override
+
     public Connection implementationConnection() throws SQLException {
         Connection con = SQLiteConnection.getConnection();
         return con;
     }
 
-    @Override
+
     public void createTable() {
         String sql = """
         CREATE TABLE IF NOT EXISTS tags (
@@ -39,7 +40,7 @@ public class TagRepository implements Repository<ApplicationState> {
         }
     }
 
-    @Override
+
     public void insert(ApplicationState model) {
         String tag = model.getTag();
         if (connection == null) {
@@ -56,11 +57,6 @@ public class TagRepository implements Repository<ApplicationState> {
         } catch (SQLException e) {
             System.err.println("Error by save the tag: " + e.getMessage());
         }
-    }
-
-    @Override
-    public void update(ApplicationState object) {
-
     }
 
     public void update(String tag, String newTag) {
@@ -88,16 +84,16 @@ public class TagRepository implements Repository<ApplicationState> {
     }
 
     @Override
-    public void delete(ApplicationState object) {
+    public void delete(ApplicationState model) {
 
     }
 
     @Override
-    public Object findById(int id) {
+    public Tags findById(int id) {
         return null;
     }
 
-    @Override
+
     public ArrayList findAll() {
         ArrayList<String> tags = new ArrayList<>();
         if (connection == null) {
