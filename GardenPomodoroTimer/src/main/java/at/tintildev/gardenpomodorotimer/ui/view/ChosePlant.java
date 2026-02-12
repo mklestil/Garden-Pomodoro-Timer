@@ -43,7 +43,7 @@ public class ChosePlant {
     /** * Initialize the view
      */
     public void initialize() {
-        // Todo: Scroll Plane einbauen , flow pane zu scroll
+        /* ScrollPane and FlowPane to Scroll the content on small Screens */
         root = new ScrollPane();
         FlowPane container = new FlowPane();
 
